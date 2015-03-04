@@ -13,7 +13,9 @@ Start by adding a `<div>` to your page that will contain your chart. Make sure i
 <div id="myfirstchart" style="height: 250px;"></div>
 ```
 *Note: in order to display something, you’ll need to have given the div some dimensions. Here I’ve used inline CSS just for illustration.*
+
 Next add a `<script>` block to the end of your page, containing the following javascript code:
+
 ```JavaScript
 new Morris.Line({
     // ID of the element in which to draw the chart.
