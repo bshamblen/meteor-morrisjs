@@ -12,7 +12,7 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.0.3.2');
-  api.use(['jquery', 'raphael']);
+  api.use(['jquery', 'clubfest:raphael@1.0.0']);
   api.addFiles('morris.js', 'client');
   api.addFiles('morris.css', 'client');
 });
