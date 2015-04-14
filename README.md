@@ -14,29 +14,42 @@ Start by adding a `<div>` to your page that will contain your chart. Make sure i
 ```
 *Note: in order to display something, you’ll need to have given the div some dimensions. Here I’ve used inline CSS just for illustration.*
 
-Next add a `<script>` block to the end of your page, containing the following javascript code:
+In your client side JavaScript code create a function to load the chart. You can call `drawChart()` within your template's `rendered` function or from a helper function, depending on your needs:
 
 ```JavaScript
-new Morris.Line({
-    // ID of the element in which to draw the chart.
-    element: 'myfirstchart',
-    // Chart data records -- each entry in this array corresponds to a point on
-    // the chart.
-    data: [
+function drawChart() {
+    //clear the contents of the div, in the event this function is called more than once.
+	$('#myfirstchart').empty();
+
+    var data = [
         { year: '2008', value: 20 },
         { year: '2009', value: 10 },
         { year: '2010', value: 5 },
         { year: '2011', value: 5 },
         { year: '2012', value: 20 }
-    ],
-    // The name of the data record attribute that contains x-values.
-    xkey: 'year',
-    // A list of names of data record attributes that contain y-values.
-    ykeys: ['value'],
-    // Labels for the ykeys -- will be displayed when you hover over the
-    // chart.
-    labels: ['Value']
-});
+    ];
+
+    //example of how to load data from a collection that already contains data in the appropriate format
+	//var data = MyCollection.find({}, {fields: { year: 1, value: 1}, {sort: year: 1}}).fetch();
+
+	if (data) {
+		new Morris.Line({
+			// ID of the element in which to draw the chart.
+			element: 'myfirstchart',
+			// Chart data records -- each entry in this array corresponds to a point on
+			// the chart.
+			data:    data,
+			// The name of the data record attribute that contains x-values.
+			xkey:    'year',
+			// A list of names of data record attributes that contain y-values.
+			ykeys:   ['value'],
+			// Labels for the ykeys -- will be displayed when you hover over the
+			// chart.
+			labels:  ['Value'],
+			resize:  true
+		});
+	}
+}
 ```
 Assuming everything’s working correctly, you should now see a line chart on your page.
 
